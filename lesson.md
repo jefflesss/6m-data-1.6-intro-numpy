@@ -78,6 +78,10 @@ Notebook section: **"Part 1: Performance Benchmark"**
 
 > **Quick activity:** Run the timing cell and describe what you observe. How much faster is NumPy? What does this mean for data science at scale?
 
+```
+NumPy is much faster, 1000 times faster, so makes data science at scale much faster
+```
+
 **Why is NumPy faster?** A Python list stores each number as a separate object scattered around memory — to multiply a list, Python visits each object one by one. A NumPy array stores all numbers in a single continuous block of memory of one fixed type, so the underlying C/Fortran code can process the entire block in one sweep. At 1 million elements, this difference is typically 100× or more.
 
 ---
@@ -114,6 +118,16 @@ arr.size   →  12       ← total cells (3 × 4)
 - Create a 3×4 array of all ones using `np.ones()`
 - Cast this array to `float32`
 - Create an array of strings representing numbers and cast to `float`
+
+```py
+import numpy as np
+
+np.ones((3,4))
+
+np.ones((3,4)).astype('float32')
+
+np.array(['1','2','3']).astype('float')
+```
 
 <details>
 <summary>💡 Solution — try it yourself first!</summary>
@@ -169,6 +183,9 @@ Key concepts:
 - `arr + scalar`, `arr - mean` — the most common data normalisation pattern
 
 > **Discussion:** How does broadcasting make code cleaner and more efficient? What would the loop equivalent look like?
+```
+No need to write loops for each function that you execute for an array. The loop equivalent would be for every array you'd need to iterate over each element in the array and apply the function.
+```
 
 ---
 
@@ -305,6 +322,19 @@ These produce completely different results. Getting them confused causes code th
 - Calculate the average value of each row (which axis?)
 - Use `np.unique()` to find distinct elements
 - Transpose the reshaped array using `.T` and check the new shape
+
+```py
+arr = np.arange(15)
+grid = arr.reshape(3, 5)
+print(grid)
+
+arr.mean(axis = 0)
+
+unique = np.unique(arr)
+print(unique)
+
+print(grid.T.shape)
+```
 
 <details>
 <summary>💡 Solution — try it yourself first!</summary>
